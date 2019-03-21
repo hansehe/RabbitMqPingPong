@@ -1,0 +1,55 @@
+{
+  "Serilog": {
+    "MinimumLevel": {
+      "Default": "Debug",
+      "Override": {
+        "Microsoft": "Debug",
+        "System": "Warning"
+      }
+    }
+  },
+  "host": {
+    "port": 5000,
+    "migrateDbSchema": true
+  },
+  "logPath": "./log",
+  "database": {
+    "type": "postgres",
+    "user": "RabbitMqPingPong",
+    "password": "dbpassword",
+    "adminUser": "admin",
+    "adminPassword": "admin",
+    "hostname": "localhost",
+    "port": 5433,
+    "pooling": true
+  },
+  "amqp": {
+    "user": "amqp",
+    "password": "amqp",
+    "hostname": "localhost",
+    "port": 5672,
+    "virtualhost": "",
+    "inputQueue": "RabbitMqPingPong_InputQueue",
+    "errorQueue": "errors",
+    "directExchange": "RebusDirect",
+    "topicExchange": "RebusTopic",
+    "ssl": {
+      "enable": false,
+      "serverName": "rabbit",
+      "certificatePassphrase": "password",
+      "certificatePath": "Certificates/client_certificate.p12"
+    }
+  },
+  "mqtt": {
+    "user": "amqp",
+    "password": "amqp",
+    "hostname": "localhost",
+    "port": 1883,
+    "ssl": {
+      "enable": false,
+      "serverName": "rabbit",
+      "certificatePassphrase": "password",
+      "certificatePath": "Certificates/client_certificate.p12"
+    }
+  }
+}

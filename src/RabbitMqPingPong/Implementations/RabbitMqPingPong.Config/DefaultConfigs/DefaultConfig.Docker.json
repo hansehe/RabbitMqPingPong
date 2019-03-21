@@ -1,0 +1,15 @@
+{
+  "host": {
+    "port": 80
+  },
+  "amqp": {
+    "hostname": "rabbitmq-service"
+  },
+  "mqtt": {
+    "hostname": "rabbitmq-service"
+  },
+  "database": {
+    "hostname": "postgres-db",
+    "port": "5432"
+  }
+}

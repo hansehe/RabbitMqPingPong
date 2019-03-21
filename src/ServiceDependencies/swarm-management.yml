@@ -1,0 +1,22 @@
+configs: 
+    rabbitmq.ssl.conf: SSLProxy/rabbitmq.ssl.conf
+
+secrets:
+    site.crt: SSLProxy/keys/server/server_certificate.pem
+    site.ca: SSLProxy/keys/testca/ca_certificate_bundle.pem
+    site.key: SSLProxy/keys/server/private_key.pem
+
+networks: 
+    backend_network: false
+
+volumes:
+    portainer_data:
+
+stacks:
+    oracle_db: docker-compose.db.oracle.yml
+    postgres_db: docker-compose.db.postgres.yml
+    rabbitmq: docker-compose.rabbitmq.yml
+    portainer: docker-compose.portainer.yml
+
+env_files:
+    - .env

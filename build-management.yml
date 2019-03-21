@@ -1,0 +1,48 @@
+changelog:
+    file: CHANGELOG.md
+    envKey: VERSION
+
+run:
+    selections:
+        dotnetService:
+            directory: src
+            files:
+                - docker-compose.dotnetService.yml
+
+build:
+    selections:
+        dotnetService:
+            directory: src
+            additionalTag: latest
+            saveImages: ${IMAGE_OUTPUT_PATH}
+            files:
+                - docker-compose.dotnetService.yml
+        dotnetServiceStandalone:
+            directory: src
+            cmd:
+                - python .\pythonSnippets\dotnet_publish.py -o ${EXE_OUTPUT_PATH} -r ${RUNTIME}
+
+test:
+    selections:
+        dotnetService:
+            directory: src
+            removeContainers: true
+            containerNames:
+                - service-tests
+            files:
+                - docker-compose.tests.yml
+
+publish:
+    selections:
+        dotnetService:
+            directory: src
+            additionalTag: latest
+            files:
+                - docker-compose.dotnetService.yml
+
+swarm:
+    selections:
+        dotnetService:
+            directory: src/ServiceDependencies
+            files:
+                - swarm-management.yml

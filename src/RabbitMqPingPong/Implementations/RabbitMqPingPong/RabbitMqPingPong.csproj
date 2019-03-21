@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="MessageHandlers" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="Configs\appsettings.Development.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\RabbitMqPingPong.Config\RabbitMqPingPong.Config.csproj" />
+      <ProjectReference Include="..\RabbitMqPingPong.Logging\RabbitMqPingPong.Logging.csproj" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="M2MqttDotnetCore" Version="1.0.8" />
+        <PackageReference Include="Rebus.RabbitMQ" Version="5.1.0" />
+        <PackageReference Include="Rebus.ServiceProvider" Version="5.0.0-b01" />
+        <PackageReference Include="FluentDbTools.Extensions.SqlBuilder" Version="1.1.3" />
+        <PackageReference Include="FluentDbTools.Extensions.MSDependencyInjection.Postgres" Version="1.1.3" />
+        <PackageReference Include="AspNetCore.HealthChecks.Rabbitmq" Version="2.2.1" />
+        <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions" Version="2.2.0" />
+    </ItemGroup>
+
+</Project>

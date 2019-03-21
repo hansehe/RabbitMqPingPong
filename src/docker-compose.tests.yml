@@ -1,0 +1,17 @@
+version: '3'
+
+services:  
+  service-tests:
+    image: service.tests
+    container_name: service-tests
+    build:
+      context: .
+      dockerfile: Dockerfile_Test
+      args:
+        - TEST_FOLDER=${TEST_FOLDER}
+    networks:
+      - backend_network
+
+networks:
+  backend_network:
+    external: true

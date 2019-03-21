@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  dotnet-rabbitmq-pingpong:
+    image: ${REPO}dotnet-rabbitmq-pingpong:${VERSION}
+    hostname: dotnet-rabbitmq-pingpong
+    build:
+      context: .
+      dockerfile: RabbitMqPingPong/Services/RabbitMqPingPong.Service/Dockerfile
+    networks:
+      - backend_network
+    ports:
+      - 5000:80
+
+networks:
+  backend_network:
+    external: true
