@@ -1,4 +1,4 @@
-# dotnetService
+# RabbitMq Ping-Pong
 
 ## Introduction
 Dotnet core service with ping pong capabilities using Rabbitmq!
