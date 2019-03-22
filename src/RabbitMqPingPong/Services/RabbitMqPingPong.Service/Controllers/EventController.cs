@@ -47,6 +47,11 @@ namespace RabbitMqPingPong.Service.Controllers
         {
             Logger.LogInformation($"Storing event with id {eventContract.Id.ToString()} in outbox for publishing.");
 
+            if (eventContract.Event.Length > EventContract.MaxEventLength)
+            {
+                eventContract.Event = eventContract.Event.Substring(0, EventContract.MaxEventLength);
+            }
+            
             using (var rebusTransactionScope = new RebusTransactionScope())
             {
                 await Bus.Advanced.Topics.Publish(EventContract.Topic, eventContract);

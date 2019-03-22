@@ -44,6 +44,17 @@ namespace RabbitMqPingPong.MessageHandlers
                 return;
             }
             
+            if (message.Event.Length > EventContract.MaxEventLength)
+            {
+                message.Event = message.Event.Substring(0, EventContract.MaxEventLength);
+            }
+
+            const int maxPingPongs = EventContract.MaxPingPongs;
+            if (message.PingPongs > maxPingPongs)
+            {
+                message.PingPongs = EventContract.MaxPingPongs;
+            }
+            
             await MqttPublisher.Publish(message);
             
             Logger.LogInformation("Publishing event again with reply command");
