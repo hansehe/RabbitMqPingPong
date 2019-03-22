@@ -21,7 +21,7 @@ namespace RabbitMqPingPong.Mqtt
         {
             var payload = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(eventContract));
 
-            MqttClient.Publish(EventContract.Topic, payload, MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE, false);
+            MqttClient.Publish(EventContract.Topic, payload, MqttMsgBase.QOS_LEVEL_AT_MOST_ONCE, false);
             
             return Task.CompletedTask;
         }

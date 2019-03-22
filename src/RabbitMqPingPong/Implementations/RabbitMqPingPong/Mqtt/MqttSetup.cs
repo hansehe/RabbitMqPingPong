@@ -80,7 +80,7 @@ namespace RabbitMqPingPong.Mqtt
 
             };
             
-            mqttClient.Subscribe(MqttTopics, new[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE }); 
+            mqttClient.Subscribe(MqttTopics, new[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE }); 
             
             return mqttClient;
         }
