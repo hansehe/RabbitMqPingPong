@@ -88,9 +88,8 @@ namespace RabbitMqPingPong.Mqtt
         private static bool Connect(this MqttClient mqttClient, IConfiguration configuration)
         {
             var mqttConfigSection = configuration.GetSection("mqtt");
-            var clientId = Guid.NewGuid().ToString(); 
             mqttClient.Connect(
-                clientId,
+                mqttConfigSection.GetValue<string>("inputQueue"),
                 mqttConfigSection.GetValue<string>("user"), 
                 mqttConfigSection.GetValue<string>("password"));
 

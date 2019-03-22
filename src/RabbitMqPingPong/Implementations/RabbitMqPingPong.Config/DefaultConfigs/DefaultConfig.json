@@ -45,6 +45,7 @@
     "password": "amqp",
     "hostname": "localhost",
     "port": 1883,
+    "inputQueue": "RabbitMqPingPong_InputQueue",
     "ssl": {
       "enable": false,
       "serverName": "rabbit",

@@ -9,7 +9,6 @@ using RabbitMqPingPong.Mqtt;
 using FluentDbTools.Common.Abstractions;
 using FluentDbTools.Extensions.MSDependencyInjection.DefaultConfigs;
 using FluentDbTools.Extensions.MSDependencyInjection.Postgres;
-using HealthChecks.RabbitMQ;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;

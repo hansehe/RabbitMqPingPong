@@ -26,7 +26,7 @@ namespace TestUtilities.RabbitMqPingPong
             {
                 {"database:user", user},
                 {"amqp:inputQueue", randomQueue},
-                {"amqp:outputQueue", randomQueue},
+                {"mqtt:inputQueue", randomQueue},
                 {"amqp:directExchange", RandomExchange},
                 {"amqp:topicExchange", RandomExchange},
                 {"centralConfig:enable", false.ToString()}

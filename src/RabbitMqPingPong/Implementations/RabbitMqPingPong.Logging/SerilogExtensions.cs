@@ -19,14 +19,10 @@ namespace RabbitMqPingPong.Logging
         {
             var outputFolder = configuration.GetValue("logPath", ApplicationConstants.LogPath);
             var outputLogFile = Path.Combine(outputFolder,
-                ApplicationConstants.ApplicationName + "-Main-{Date}.log");
-            var outputProfilingFile = Path.Combine(outputFolder,
-                ApplicationConstants.ApplicationName + "-Profiling-{Date}.log");
+                ApplicationConstants.ApplicationName + "-{Date}.log");
                 
             const string outputTemplate =
-                "{Timestamp:yyyyMMdd HH:mm:ss,fff};[{Log4NetLevel}];{ApplicationId};{SessionId};{CallId};{ThreadId};{SourceContext:l};{Message:lj}{NewLine}{Exception}";
-
-            var profilingFilter = Matching.FromSource(ApplicationConstants.ProfilingMatch);
+                "{Timestamp:yyyyMMdd HH:mm:ss,fff};{CallId};{ThreadId};{SourceContext:l};{Message:lj}{NewLine}{Exception}";
 
             loggerConfiguration
                 .MinimumLevel.Information()
@@ -37,17 +33,8 @@ namespace RabbitMqPingPong.Logging
                     .WriteTo.Console(outputTemplate: outputTemplate)
                     .WriteTo.RollingFile(outputLogFile,
                         outputTemplate: outputTemplate)
-                    .Filter.ByExcluding(profilingFilter)
                     .Enrich.FromLogContext()
                     .Enrich.WithThreadId()
-                    .Enrich.WithProperty("ApplicationId", ApplicationConstants.ApplicationId)
-                    .Enrich.WithProperty("SessionId", ApplicationConstants.SessionId)
-                    .Enrich.WithLog4NetLevel()
-                )
-                .WriteTo.Logger(config => config
-                    .WriteTo.RollingFile(outputProfilingFile,
-                        outputTemplate: "{Message}{NewLine}")
-                    .Filter.ByIncludingOnly(profilingFilter)
                 );
         }
     }
