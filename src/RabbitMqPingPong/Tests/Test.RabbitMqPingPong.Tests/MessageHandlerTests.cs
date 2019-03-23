@@ -12,7 +12,7 @@ using TestUtilities.RabbitMqPingPong;
 using uPLibrary.Networking.M2Mqtt;
 using Xunit;
 
-namespace TestDIPS.RabbitMqPingPong.Tests
+namespace Test.RabbitMqPingPong.Tests
 {
     [Collection(TestCollectionFixture.CollectionTag)]
     public class MessageHandlerTests

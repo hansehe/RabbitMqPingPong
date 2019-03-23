@@ -1,7 +1,7 @@
 ﻿using TestUtilities.RabbitMqPingPong;
 using Xunit;
 
-namespace TestDIPS.RabbitMqPingPong.Tests
+namespace Test.RabbitMqPingPong.Tests
 {
     [CollectionDefinition(CollectionTag)]
     public class TestCollectionFixture : ICollectionFixture<DatabaseMigrationFixture>

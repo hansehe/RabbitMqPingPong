@@ -16,7 +16,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMqPingPong.Migration"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{CAC9B1DF-FFB5-40C6-A9B7-2BBF009A8C16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDIPS.RabbitMqPingPong.Tests", "Tests\TestDIPS.RabbitMqPingPong.Tests\TestDIPS.RabbitMqPingPong.Tests.csproj", "{6166FA9C-F9EF-4186-95FC-E88BC01EC4DC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.RabbitMqPingPong.Tests", "Tests\Test.RabbitMqPingPong.Tests\Test.RabbitMqPingPong.Tests.csproj", "{6166FA9C-F9EF-4186-95FC-E88BC01EC4DC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestUtilities.RabbitMqPingPong", "Tests\TestUtilities.RabbitMqPingPong\TestUtilities.RabbitMqPingPong.csproj", "{1399722A-6694-432E-ABD7-FF9610140AAC}"
 EndProject
