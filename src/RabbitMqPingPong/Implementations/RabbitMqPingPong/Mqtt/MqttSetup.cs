@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Rebus.Bus;
+using Rebus.Transport;
 using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
 
@@ -16,7 +17,7 @@ namespace RabbitMqPingPong.Mqtt
     {
         private static readonly string[] MqttTopics = 
         {
-            EventContract.Topic
+            EventContract.ForwardTopic
         };
 
         public static MqttClient Setup(this MqttClient mqttClient, IServiceProvider serviceProvider)
@@ -67,15 +68,11 @@ namespace RabbitMqPingPong.Mqtt
 
                 var eventContract = JsonConvert.DeserializeObject<EventContract>(payload);
                 
-                if (!eventContract.Forward)
+                using (var rebusTransactionScope = new RebusTransactionScope())
                 {
-                    return;
-                }
-                
-                using (var scope = serviceProvider.CreateScope())
-                {
-                    var outbox = scope.ServiceProvider.GetRequiredService<IBus>();
-                    outbox.Advanced.Topics.Publish(EventContract.Topic, eventContract);
+                    var bus = serviceProvider.GetRequiredService<IBus>();
+                    bus.Advanced.Topics.Publish(EventContract.Topic, eventContract);
+                    rebusTransactionScope.Complete();
                 }
 
             };

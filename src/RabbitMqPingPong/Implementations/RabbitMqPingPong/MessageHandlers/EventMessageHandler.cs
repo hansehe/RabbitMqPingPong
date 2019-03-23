@@ -34,7 +34,6 @@ namespace RabbitMqPingPong.MessageHandlers
         {
             Logger.LogInformation($"Received contract with event: {message.Event}");
             message.PingPongs--;
-            message.Forward = false;
             
             if (message.Stop)
             {
