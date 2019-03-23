@@ -8,6 +8,7 @@ using RabbitMqPingPong.MessageHandlers;
 using RabbitMqPingPong.Mqtt;
 using FluentDbTools.Common.Abstractions;
 using FluentDbTools.Extensions.MSDependencyInjection.DefaultConfigs;
+using FluentDbTools.Extensions.MSDependencyInjection.Oracle;
 using FluentDbTools.Extensions.MSDependencyInjection.Postgres;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -111,7 +112,8 @@ namespace RabbitMqPingPong
         {
             return serviceCollection
                 .AddSingleton<IDbConfig, MSDbConfig>()
-                .AddPostgresDbProvider();
+                .AddPostgresDbProvider()
+                .AddOracleDbProvider();
         }
         
         private static IServiceCollection RegisterMessageHandlers(this IServiceCollection serviceCollection)

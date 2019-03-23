@@ -13,7 +13,7 @@ namespace TestUtilities.RabbitMqPingPong
     {
         private static string RandomQueue => $"InputQueue_{new Random().Next().ToString()}";
         private static string RandomExchange => $"Exchange_{new Random().Next().ToString()}";
-        public const SupportedDatabaseTypes DefaultDatabaseType = SupportedDatabaseTypes.Oracle;
+        public const SupportedDatabaseTypes DefaultDatabaseType = SupportedDatabaseTypes.Postgres;
         
         public static Dictionary<string, string> GetOverrideConfig(
             SupportedDatabaseTypes databaseType = DefaultDatabaseType, 
@@ -43,6 +43,12 @@ namespace TestUtilities.RabbitMqPingPong
                     overrideDict["database:port"] = BaseConfig.InContainer ? "5432" : "5433";
                     break;
                 case SupportedDatabaseTypes.Oracle:
+                    overrideDict["database:type"] = "oracle";
+                    overrideDict["database:adminUser"] = "system";
+                    overrideDict["database:adminPassword"] = "oracle";
+                    overrideDict["database:databaseConnectionName"] = "xe";
+                    overrideDict["database:hostname"] = BaseConfig.InContainer ? "oracle-db" : "localhost";
+                    overrideDict["database:port"] = "1521";
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(databaseType), databaseType, null);

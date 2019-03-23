@@ -8,7 +8,8 @@ namespace TestUtilities.RabbitMqPingPong
         public static IEnumerable<object[]> DbParameters =>
             new List<object[]>
             {                
-                new object[] { SupportedDatabaseTypes.Postgres }
+                new object[] { SupportedDatabaseTypes.Postgres },
+                new object[] { SupportedDatabaseTypes.Oracle }
             };
     }
 }
