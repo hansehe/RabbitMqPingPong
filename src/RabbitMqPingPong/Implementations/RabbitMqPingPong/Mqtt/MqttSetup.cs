@@ -76,8 +76,11 @@ namespace RabbitMqPingPong.Mqtt
                 }
 
             };
-            
-            mqttClient.Subscribe(MqttTopics, new[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE }); 
+                        
+            if (MqttTopics.Length > 0)
+            {
+                mqttClient.Subscribe(MqttTopics, new[] { MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE }); 
+            }
             
             return mqttClient;
         }

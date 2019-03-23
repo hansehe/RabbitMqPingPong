@@ -17,11 +17,17 @@ namespace RabbitMqPingPong.Mqtt
             MqttClient = mqttClient;
         }
         
-        public Task Publish(EventContract eventContract)
+        public Task Publish<T>(T @object)
         {
-            var payload = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(eventContract));
+            var topic = typeof(T).FullName;
+            return Publish(topic, @object);
+        }
 
-            MqttClient.Publish(EventContract.Topic, payload, MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE, false);
+        public Task Publish(string topic, object @object)
+        {            
+            var payload = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(@object));
+
+            MqttClient.Publish(topic, payload, MqttMsgBase.QOS_LEVEL_AT_MOST_ONCE, false);
             
             return Task.CompletedTask;
         }

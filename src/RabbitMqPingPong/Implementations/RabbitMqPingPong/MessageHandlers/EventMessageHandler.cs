@@ -54,7 +54,7 @@ namespace RabbitMqPingPong.MessageHandlers
                 message.PingPongs = EventContract.MaxPingPongs;
             }
             
-            await MqttPublisher.Publish(message);
+            await MqttPublisher.Publish(EventContract.Topic, message);
             
             Logger.LogInformation("Publishing event again with reply command");
 
